@@ -20,7 +20,7 @@ export async function POST(req) {
             },
             ...data,
         ],
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o-mini',
         stream: true,
     })
 
