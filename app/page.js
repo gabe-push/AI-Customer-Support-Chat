@@ -1,5 +1,5 @@
 "use client";
-import { Box, Stack, Button, TextField } from "@mui/material";
+import { Box, Stack, Button, TextField, Paper, CircularProgress, Typography } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
@@ -74,7 +74,6 @@ export default function Home() {
   useEffect(() => {
     scrollToBottom();
   }, [messages])
-
   return (
     <Box
       width="100vw"
@@ -83,12 +82,20 @@ export default function Home() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      bgcolor="#f0f2f5"
+      p={2}
     >
+    <Typography variant="h4" component="h1" gutterBottom>
+          Support Chat
+        </Typography>
       <Stack
-        direction={"column"}
-        width="600px"
+        direction="column"
+        width="500px"
         height="700px"
-        border="1px solid black"
+        border="1px solid #ccc"
+        borderRadius={8}
+        boxShadow={3}
+        bgcolor="white"
         p={2}
         spacing={3}
       >
@@ -104,18 +111,27 @@ export default function Home() {
               key={index}
               display="flex"
               justifyContent={
-                message.role === "assistant" ? "flex-start" : "flex-end"
+                message.role === 'assistant' ? 'flex-start' : 'flex-end'
               }
+              mb={2}
             >
               <Box
                 bgcolor={
-                  message.role === "assistant"
-                    ? "primary.main"
-                    : "secondary.main"
+                  message.role === 'assistant'
+                    ? 'primary.main'
+                    : 'secondary.main'
                 }
                 color="white"
                 borderRadius={16}
                 p={3}
+                maxWidth="75%"
+                boxShadow={1}
+                sx={{
+                  wordWrap: 'break-word',
+                  overflowWrap: 'break-word',
+                  whiteSpace: 'pre-wrap',
+                  background: message.role === 'assistant' ? 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)' : 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                }}
               >
                 {message.content}
               </Box>
@@ -123,7 +139,7 @@ export default function Home() {
           ))}
           <div ref={messagesEndRef} />
         </Stack>
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} mt={2}>
           <TextField
             label="Message"
             fullWidth
@@ -131,16 +147,21 @@ export default function Home() {
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
             disabled={isLoading}
+            variant="outlined"
+            sx={{ bgcolor: 'white', borderRadius: 2 }}
           />
           <Button
             variant="contained"
+            color="primary"
             onClick={sendMessage}
             disabled={isLoading}
-            >
-            {isLoading ? "Sending..." : "Send"}
+            sx={{ borderRadius: 2 }}
+          >
+            Send
           </Button>
         </Stack>
       </Stack>
     </Box>
   );
-}
+};
+
