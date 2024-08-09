@@ -7,7 +7,9 @@ I can help with interview scheduling, practicing data structures and algorithms,
 
 
 export async function POST(req) {
-    const openai = new OpenAI()
+    const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    })
     const data = await req.json()
 
     const completion = await openai.chat.completions.create({
