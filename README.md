@@ -1,4 +1,4 @@
-# Try TechTalked AI Now!
+# Try TechTalker AI Now!
 https://ai-customer-support-chat.vercel.app/
 
 # Tutorial
