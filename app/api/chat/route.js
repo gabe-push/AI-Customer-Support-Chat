@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
+import { Analytics } from "@vercel/analytics/react"
 
 const systemPrompt = `Welcome to HeadstarterAI Customer Support. How can I assist you with your AI-powered software engineering interviews today?
 
